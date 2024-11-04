@@ -49,10 +49,10 @@ void printJobSeq(vector<Job> &jobs){
             }
         }
     }
-    cout<<"ID"<<"\t"<<"Profit\t"<<endl;
+    cout<<"Index\t"<<"ID"<<"\t"<<"Profit\t"<<endl;
     int totalpf =0;
     for(int i=0; i<maxdeadline; i++){
-        cout<<result[i]<<"\t"<<totalProfit[i]<<endl;
+        cout<<i<<"\t"<<result[i]<<"\t"<<totalProfit[i]<<endl;
         totalpf += totalProfit[i];
     }
     cout<<"TOTAL PROFIT\t"<<totalpf<<endl;
