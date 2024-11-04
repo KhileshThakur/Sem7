@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Item{
+    public:
+        double value;
+        int weight;
+
+        Item(double value, int weight){
+            this->value = value;
+            this->weight = weight;
+        }
+};
+
+bool compare(Item item1, Item item2){
+    double ratio1 = (double)item1.value/item1.weight;
+    double ratio2 = (double)item2.value/item2.weight;
+    return ratio1>ratio2;
+}
+
+void fractionalKnapsac(vector<Item>& items, int capacity){
+    sort(items.begin(), items.end(), compare);
+
+    double totalValue = 0.0;
+    int currentWeight = 0;
+
+    int n=items.size();
+
+    for(int i=0; i<n; i++){
+        if(currentWeight + items[i].weight <= capacity){
+            totalValue += items[i].value;
+            currentWeight += items[i].weight;
+        }
+        else{
+            int remainingWeight = capacity - currentWeight;
+            totalValue += ((double)items[i].value/items[i].weight)*remainingWeight;
+            break;
+        }
+    }
+
+    cout <<totalValue;
+
+}
+
+int main(){
+
+    vector<Item> items = {
+        Item(60, 30),
+        Item(100, 50),
+        Item(40, 5),
+        Item(40, 10),
+        Item(10, 2)
+    };
+    int capacity = 85;
+    cout<<"Maximum Value for Capacity 85 is : " ;
+    fractionalKnapsac(items, capacity);
+
+
+    return 0;
+}
