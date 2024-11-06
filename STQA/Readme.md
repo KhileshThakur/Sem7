@@ -1,1 +1,0 @@
-STQA mini project
